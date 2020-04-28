@@ -46,3 +46,29 @@
     // 출처: https://kldp.org/node/116277
     ```
 9. `vector`
+    ``` c++
+    // 헤더가 필요하고, 사용할 때 std:: 가 있어야 함
+    #include<vector>
+    using namespace std;
+
+    // vector 생성
+    vector<int> vec(길이, 초기화할 값); // {값, 값, 값, ...}
+    vector<int> vec2(vec); // vec를 vec2에 복사
+
+    // 값 넣기
+    vec.push_back(10);
+    vec.insert(vec.begin() + 1, 10);
+
+    // 값 삭제
+    vec.erase(vec.begin());
+
+    // 처음부터 끝까지 참조
+    for(vector<int>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+        cout << *itr << endl;
+    }
+    // or
+    for (vector<int>::size_type i = 0; i < vec.size(); i++) {
+        cout << vec[i] << endl;
+    }
+    ```
+10. 수학 공식으로 풀 수 있는 문제는 공식으로 풀자
