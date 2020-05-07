@@ -48,7 +48,7 @@
 9. `vector`
     ``` c++
     // 헤더가 필요하고, 사용할 때 std:: 가 있어야 함
-    #include<vector>
+    #include <vector>
     using namespace std;
 
     // vector 생성
@@ -72,3 +72,56 @@
     }
     ```
 10. 수학 공식으로 풀 수 있는 문제는 공식으로 풀자
+11. `string`
+    ``` c++
+    #include <iostream>
+    // string 사용을 위한 헤더
+    #include <string>
+    // string은 cin, cout으로 사용
+    using namespace std;
+
+    string s = "abc";
+    cout << s; // abc
+
+    s.at(찾을 문자열의 인덱스);
+    // 문자열의 0번째 값을 리턴
+    s.at(0); // a
+
+    // 문자열의 첫번째 값을 리턴
+    s.front(); // a
+    // 문자열의 마지막 값을 리턴
+    s.back(); // c
+
+    // 문자열의 첫번째 문자를 가리키는 포인터 리턴
+    s.begin();
+    // 문자열의 마지막 문자를 가리키느 포인터 리턴
+    s.end();
+    
+    // 문자열의 사이즈를 반환
+    s.size(); // 3
+    s.length(); // 3
+
+    // 문자열에서 해당 문자의 (시작) 인덱스를 반환
+    str.find('a'); // 0
+    str.find("bc"); // 1
+    ```
+12. `getline` 함수
+    ``` c++
+    #include <iostream>
+    // string 헤더 필요
+    #include <string>
+    using namespace std;
+    string str_1;
+    string str_2;
+
+    // 띄어쓰기도 입력 받음
+    getline(cin, str_1);
+
+    // 5개의 문자만 입력을 받음 (단, 맨 마지막에 null 포함)
+    cin.getline(str_1, 5);
+    ```
+13. `max` 함수
+    ``` c++
+    // a랑 b를 비교해서 큰 값을 리턴
+    max(a, b);
+    ```
