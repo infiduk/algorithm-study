@@ -125,3 +125,30 @@
     // a랑 b를 비교해서 큰 값을 리턴
     max(a, b);
     ```
+14. 배열 초기화
+    ``` c++
+    // 선언 시 0으로 초기화
+    int arr[10] = {};
+    int arr[10] = {0};
+    int arr[10] = {0,}; // 처음 값만 0으로 
+    
+    fill(시작 위치, 끝 위치, 값);
+    fill_n(시작 위치, 갯수, 값);
+    ```
+15. `string::npos`
+    ``` c++
+    // 찾는 문자열이 없으면 string::npos 반환
+    string::npos
+
+    string s = "abced";
+    if(s.find("ab") != string::npos)
+        cout << "존재";
+    ```
+
+
+
+
+
+
+
+
