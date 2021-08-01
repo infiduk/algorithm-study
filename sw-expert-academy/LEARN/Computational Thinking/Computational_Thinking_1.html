@@ -1,0 +1,652 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>프로그래밍과 논리 / 수학</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1056de3e-2759-4e0a-80f2-8a04b4850a76" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">💪</span></div><h1 class="page-title">프로그래밍과 논리 / 수학</h1></header><div class="page-body"><ul id="293cfcbc-cd1e-4b34-ada2-85011122b10b" class="toggle"><li><details open=""><summary>학습개요</summary><p id="8a3b5b3c-c1d9-484c-8b48-1077b53355a5" class="">S/W 프로그램에 대한 예측과 확인에 대한 훈련이 되어 있지 않으면 단순 작업 이상의 코드를 작성하기 어렵습니다.</p><p id="ab0390ab-8ce2-4c19-b64a-4ffa5fa86b50" class="">본 과정을 통해 Problem Solving에 필요한 기초 논리와 수학을 학습할 수 있습니다.</p><p id="816e7c94-a788-4779-9111-005ef5f15146" class="">본 과정에서 제시하는 문제들을 풀며 고민하는 과정을 통해 논리적 사고력이 향상되길 기대합니다.</p><p id="c01d4aa7-8218-4815-bee0-366327d253df" class="">또한, 프로그래밍 과제를 통해 머리속으로 생각한 것을 실제 코드로 옮기는 연습을 할 수 있습니다.</p></details></li></ul><ul id="10f19cb7-59f8-4c7a-9e55-9a904db497dd" class="toggle"><li><details open=""><summary>학습목표</summary><p id="1ae6f05c-96a1-400b-b5ba-02aef4001fce" class="">S/W Problem Solving을 위해 논리적으로 정확하게 확인하는 과정에 대한 기초 지식을 습득합니다.</p></details></li></ul><ul id="a18bcbba-9e56-40eb-9efb-311d97d9e7f9" class="toggle"><li><details open=""><summary>목차</summary><ol id="a9cf9aa4-6cc2-460c-9718-aed5e60a9faf" class="numbered-list" start="1"><li>Computational Thinking<ul id="6ebf40fc-a055-4eaf-88da-2196c9532e7d" class="bulleted-list"><li>프로그래밍과 논리/수학</li></ul><ul id="4d968a52-3a7b-4bf8-9b91-4fdfdeb03e05" class="bulleted-list"><li>논리와 증명</li></ul></li></ol></details></li></ul><p id="e752e2c1-a1bf-401e-a4b5-7e041884af8f" class="">
+</p><p id="2950b906-73ad-437f-943e-a45cc3ac5d92" class="">좋은 프로그래머가 되기 위해서는 Computational Thinking을 해야할 필요가 있음</p><p id="ff2e104f-9406-435d-baa0-5e17763244b9" class="">
+</p><p id="33f04a81-e767-48c2-a49e-2db6d2d4763e" class="">차례</p><ol id="3ccc5294-cd75-4f03-a9ff-308fe547cabb" class="numbered-list" start="1"><li>프로그래밍과 논리/수학</li></ol><ol id="718d80f4-fcba-4d6e-a6f9-16190333bdf2" class="numbered-list" start="2"><li>논리와 증명</li></ol><ol id="10dabd49-e111-4f47-9a16-02dc2fea9ecb" class="numbered-list" start="3"><li>수와 표현</li></ol><ol id="194f791a-766d-46c2-893d-eb1d02251b16" class="numbered-list" start="4"><li>집합과 조합론</li></ol><ol id="365b8022-8526-4452-af81-38cb36e097bd" class="numbered-list" start="5"><li>기초 수식</li></ol><ol id="eec117e9-e813-4349-a5da-75a89926511e" class="numbered-list" start="6"><li>재귀</li></ol><ol id="e7f1b51c-3fab-45d9-a537-1cbcd19b9a5a" class="numbered-list" start="7"><li>동적 프로그래밍</li></ol><ol id="28e78140-e4e3-404d-aae2-c7121b165cef" class="numbered-list" start="8"><li>조합론 프로그램 과제</li></ol><ol id="e45f87f0-4057-4894-9aa7-e0b655d02d0b" class="numbered-list" start="9"><li>기초 알고리즘 프로그램 과제</li></ol><p id="4be686b2-e99d-42ee-8fb0-dfffbf4d62ae" class="">
+</p><p id="92564045-1573-4a69-a967-e6524732b633" class="">해당 영상은 1, 2 번 내용을 담고있음</p><p id="db4d23f9-85e7-4b25-a1c9-72228d203e3e" class="">
+</p><p id="83868d1c-d933-4a3d-b0bc-a5492e0e911e" class="">프로그래밍에서 어려운 점 두 가지는 <strong>프로그래밍 언어 문법과 라이브러리 사용</strong>, <strong>논리적으로 어려운 점</strong>임</p><ol id="bf4ce03a-f1f0-4243-ad43-da815a3e1d31" class="numbered-list" start="1"><li>프로그래밍 언어 문법과 라이브러리 사용<ul id="33ea8c69-f27b-4bd4-a352-19e8cdcd2cec" class="bulleted-list"><li>처음 보는 사람이 프로그래밍 언어 문법을 보면 어떤 뜻인지 알 수 없음</li></ul></li></ol><ol id="95cddb54-2f29-4374-b47e-a380271053be" class="numbered-list" start="2"><li>논리<ul id="fb3e215f-084d-479c-990b-fdb06d147e50" class="toggle"><li><details open=""><summary>Hard vs. Soft Logic</summary><ul id="c67ad773-78e9-43a3-97f3-89441c4eecdd" class="bulleted-list"><li>카드 문제<p id="1772b4b9-da3c-4fc2-936d-cdbbd022bcd8" class="">사실: 모든 카드의 한쪽에는 알파벳이, 다른 쪽에는 숫자가 써 있음</p><p id="a7c0e809-4e8c-42fc-9660-ada9a15d8180" class="">주장: 만약 한쪽이 D 이면 반대쪽은 3</p><p id="b13eee20-fcf0-493c-84be-61223a5d5bbb" class="">주장이 사실인지 확인하기 위해 다음 카드들 중 반드시 뒤집어 보아야 하는 것은 몇 개이고 어느 것인가?</p><p id="cc0ad511-374f-4d63-8704-0a7be41a1687" class="">카드: |D| |F| |3| |7|</p><hr id="6bc5ced5-2cb6-43e4-98e6-e2ab33cc743f"/><p id="7344d321-5b33-436d-9202-ed617bfa1c97" class="">생각한 답: 1 개만 뒤집어 보면 됨. |D| or |3| 카드</p><p id="95700fb7-ec02-4009-8f4e-3ad655294154" class="">답: <strong>2 개</strong>를 뒤집어 봐야 함. <strong>|D| and |7|</strong> 카드</p><p id="12eb5f54-4714-4fdf-8a2e-e0e5920be258" class="">풀이<div class="indented"><ul id="39fd724d-a9b2-487f-9296-47f5466f9754" class="bulleted-list"><li>|D| 카드를 뒤집어 보아야 한다는 것은 누구나 알아 냄</li></ul><ul id="4a912395-9f5a-41a2-ba45-e7a27f9bdd9b" class="bulleted-list"><li>|F| 카드를 뒤집어 봤을 때 <strong>어떤 숫자가 있든 주장이 사실인지 여부에 영향이 없음</strong>
+숫자가 3 이어도 주장과 상관이 없고, 3 이외의 다른 숫자여도 주장과 상관이 없음</li></ul><ul id="3a044836-2bb2-4236-9b33-db80538ee19e" class="bulleted-list"><li>|3| 카드를 뒤집어 봤을 때 <strong>어떤 영어가 있든 주장이 사실인지 여부에 영향이 없음</strong>
+주장에서 정해진 것은 D 일 때 3 이기 때문에, 영어가 F여도 주장과 상관이 없음</li></ul><ul id="2fcfc6ba-c95c-4b7d-b052-cfbecbb83a85" class="bulleted-list"><li>|7| 카드를 뒤집어 봤을 때 <strong>D가 있다면 주장이 성립하지 않음</strong>
+주장에서 정해진 것은 D 일 때 3 이기 때문임</li></ul></div></p></li></ul><ul id="fee7db70-5e03-4f16-9498-1e3daf7c2baa" class="bulleted-list"><li>맥주집 문제<p id="6efe6af1-c68b-4c51-99c6-22422cefb9f7" class="">규칙: 20 세 이하인 사람은 맥주를 마실 수 없음</p><p id="f868a36a-c2eb-4384-ba32-35d98670829a" class="">문제: 나이 혹은 마시고 있는 것을 표시한 다음 4 명 중 확인이 필요한 사람은 몇 명이고 누구인가?</p><p id="ff17b848-3b28-4c7b-93d2-1f31e1682998" class="">사람: |17세| |31세| |콜라| |맥주|</p><hr id="bf769b57-948a-44c0-9ee5-1a54f28e361f"/><p id="bd6fdc7f-c1de-47e5-829d-6f68a8258b1a" class="">생각한 답: 2 명. |17세| and |맥주|</p><p id="6f523fb4-0b29-4944-943c-29b586c52c04" class="">답: <strong>2 명</strong>. <strong>|17세| and |맥주|</strong></p></li></ul><ul id="5c55cd10-2222-4138-9591-f641191bbbbe" class="bulleted-list"><li>카드 문제와 맥주집 문제의 비교<p id="6040b2cb-2fe0-404d-8dc0-90287db3489a" class="">카드 문제와 맥주집 문제는 <strong>완전히 같은 문제</strong>임 (논리적 구성은 완전히 동일함)</p><p id="832ec4b4-b10d-447d-bae5-7a2d369553d9" class="">카드 문제를 풀 때는 <strong>논리를 이용</strong>했지만, 맥주집 문제를 풀 때는 논리를 이용해서 풀지 않고 <strong>직관을 사용</strong>함</p></li></ul><ul id="c830df75-974d-4560-9b7f-f19f0fc34db5" class="bulleted-list"><li>직관<p id="6b42fe18-6ed5-4832-92b2-7807aff84d41" class=""><strong>논리적인 느낌</strong>을 주는 것</p><p id="728b5b0f-2048-4725-ab4a-fe99e6109171" class="">어렸을 때 논리적인 문제를 많이 풀었기 때문에, 그 경험으로 논리를 이용하지 않고 직관을 사용해도 문제를 풀 수 있게 된 것</p><p id="6fd8754f-ccf3-4171-9e4a-4a13c08fee8d" class="">장점: 익숙한 상황일 경우 빠름</p><p id="abb49f01-570a-490a-a965-cf24cfc2df6d" class="">단점: 강한 착각을 일으킬 수 있어 정확하지 않을 수 있음</p></li></ul><ul id="948cd377-16ae-4ab3-ad75-8e365200e8ee" class="bulleted-list"><li>진짜 논리 vs. 직관적인 논리<ol id="12c6b061-0bbd-454e-bb3b-868235a397ca" class="numbered-list" start="1"><li>너 과자 몇 개 먹었니? vs. 버스 타려고 하는데 천원 있니?<p id="b2a2a507-a75e-43ab-9dee-57a5e6b6f286" class="">1 번 질문의 경우 과자 3 개를 먹었어도 1 개를 먹었다고 대답은 할 수 있음 (1 개씩 3번 먹었다는 것은 사실임)
+하지만 일반적으로 1 개를 먹었다고 하면 이해하기 어렵고, 먹은 개수를 다 말해줌</p><p id="bbba0906-436b-48af-b1f2-f2e144ee8810" class="">2 번 질문의 경우 만원을 가지고 있어도 천원을 가지고 있다고 대답함 (만원에 천원이 포함되어 있기 때문임)
+만원을 가지고 있었는데 왜 천원이 있다고 대답했냐고 역으로 질문해도 질문에 대한 답은 정확하게 주었기 때문에 틀린 내용이 없음 </p><p id="5fb4713b-86d1-4d57-a68b-d69c7ecaa185" class="">두 질문은 <strong>같은 표현을 사용</strong>하지만, 하나는 <strong>정확한 개수를 요구</strong>하고 다른 하나는 <strong>천원 이상이 있는지 물어보는 것
+</strong>1 번 질문은 진짜 논리, 2 번 질문은 직관적인 논리</p></li></ol><ol id="72f918e9-abf1-4fe0-9108-dda34efaa76b" class="numbered-list" start="2"><li>합격하려면 토플 500 점 이상 혹은 토익 600 점 이상이 필요 vs. 복권에 당첨되면 자동차 혹은 천만원을 줍니다<p id="4448f60b-d490-4fa7-b636-b8bdfd4aabf1" class="">1 번 질문의 경우 토플 500 점 이상과 토익 600 점 이상 모두 취득하고 있어도 합격할 수 있음</p><p id="9142ade6-d0c2-4208-97fd-6975aef5ebef" class="">2 번 질문의 경우 복권에 당첨되어도 자동차와 천만원을 모두 받을 수 없음</p><p id="a6dfb177-ac61-429b-85bf-fbeae1488a55" class="">두 말은 <strong>같은 표현을 사용</strong>하지만 하나는 <strong>inclusive or</strong>, 다른 하나는 <strong>exclusive or</strong></p></li></ol><p id="442c1cc6-eb30-4efd-8433-62b23cea05b5" class="">이러한 차이가 <strong>직관</strong>으로 들어와 있기 때문에, 일상에서 아무 문제없이 위의 표현을 사용함</p><p id="23a45616-2ba5-4ab3-8755-774c3e372a2c" class="">하지만 익숙하지 않은 프로그래밍에서 이러한 상황이 등장하게 되면 <strong>심한 착각</strong>을 불러일으킬 수 있음 (<strong>논리를 따로 연구해야할 필요</strong>가 있음)</p></li></ul><ul id="50ca5586-dc73-4d24-8982-24e6bf920b71" class="bulleted-list"><li>일상 생활 vs. 프로그래밍<p id="41e005a5-719b-4133-a7c6-8a761cbaa550" class=""><strong>일상 생활</strong>에서는 <strong>Soft Logic 이 빠르기 때문에 유용</strong>함
+<strong>논리적으로 부정확한 표현을 사용</strong>하지만, <strong>어떤 의미인지 모든 사람이 알고있기 때문</strong>임</p><p id="8929f2a9-15c5-4ec1-a140-8cfb54763b63" class=""><strong>프로그래밍</strong>에서는 <strong>Hard Logic 을 사용</strong>함
+프로그래밍 언어의 표현들이 모두 <strong>논리학</strong>에서 나왔고, 사용되는 <strong>수많은 알고리즘을 이해하기 위해서는 Hard Logic 이 필요</strong>함
+이러한 이유로 <strong>직관을 사용해 프로그래밍</strong>을 하려고 하면 <strong>어렵게 느껴지게 됨</strong></p></li></ul><ul id="76e6480d-97b3-40b8-8618-1b95266c1068" class="bulleted-list"><li>오해의 근원<p id="44832de6-e044-4e7f-b08e-2602ed6f43a2" class=""><strong>Soft Logic</strong> 으로 <strong>알고리즘을 이해</strong>하려고 해서 <strong>프로그래밍이 어려운 것</strong></p><p id="05effc44-2838-45b0-839a-9632bc2acedd" class="">알고리즘 설명을 보고 또 봐도 이해가 안 되는 것은 증명을 안 봤기 때문임</p></li></ul></details></li></ul><ul id="0031e7ee-96e7-4e5a-8a51-4921d6976fe6" class="toggle"><li><details open=""><summary>논리 연습</summary><p id="62032edc-6676-407e-b7ec-5facf133f8c3" class="">문제 1: 다음을 명제식 형태로 쓰고 참인지 거짓인지 판단하시오<div class="indented"><ol id="39836e2d-644c-40b4-a9bd-d4008843280c" class="numbered-list" start="1"><li>만약 0 이 홀수라면, 미국에서 2080 년 월드컵이 열린다.</li></ol><hr id="61d3c24c-970f-427f-93a4-4c260265a58b"/><p id="0f2850d8-2d91-4914-b860-712590490022" class="">생각한 답: </p><p id="df728bca-3f5b-482e-bab7-537fc3044fba" class="">답: 참</p><p id="d1902f83-ab2d-4198-9736-6a432824d2e5" class="">풀이<div class="indented"><ul id="2f3b5291-0f66-46b1-aa7f-1a64fc12aff0" class="bulleted-list"><li>미국에서 2080 년에 월드컵이 열리는지에 대한 내용은 아무도 모르지만, 전체 명제식이 사실인지 아닌지 확인할 수 있는 방법이 있음</li></ul><ul id="0540519a-9ecb-4349-922c-d906a561b306" class="bulleted-list"><li>0 이 홀수가 아니라는 것은 알고있음 (<strong>p 가 거짓</strong>인 것을 알 수 있음)</li></ul><ul id="07be94a5-6bc2-47b7-b8a1-3f7a79e4726b" class="bulleted-list"><li><strong>가정이 거짓</strong>이면 <strong>전체 명제식은 항상 참</strong>이 됨</li></ul><ul id="0cc3c893-2f09-4dfb-ab11-d3dc7c25091a" class="bulleted-list"><li><strong>p → q 라는 명제식</strong>에서, <strong>~p 인 경우 전체 명제식은 참</strong>이 됨 <mark class="highlight-red">*1</mark></li></ul><ul id="8d9fdc9a-5510-4be0-b2ac-95cb1edc1a86" class="bulleted-list"><li>시험에서 100 점을 받으면, 치킨을 사준다 라는 명제가 있다고 가정
+<strong>시험에서 100 점을 받았는데 치킨을 사줬는지에 대한 여부</strong>는 <strong>명확히 나타낼 수 있지만</strong>, <strong>시험에서 100 점을 받지 못했을 경우</strong>는 <strong>치킨을 사줬는지에 대한 여부를 따질 수 없기 때문</strong>에 해당 명제는 <strong>무조건 참</strong>이 됨</li></ul></div></p><ol id="7b5421ab-ca39-477f-ae70-341ae23a4cbb" class="numbered-list" start="1"><li>만약 19893827938274839 이 Prime Number 라면, 2 는 짝수이다.</li></ol><hr id="da0ef8ef-80c4-4146-ab07-58d466121eb6"/><p id="165fe3ab-7356-4566-8965-751c9393c0f3" class="">생각한 답: 참</p><p id="cab57f60-d0e5-4566-bcc7-80efe2321db7" class="">답: 참</p><p id="9c505867-029d-430d-b7ac-9a27511072f8" class="">풀이<div class="indented"><ul id="491d30c6-0d5e-4bd9-b3e7-2484fee54ee7" class="bulleted-list"><li>19893827938274839 라는 숫자가 Prime Number 인지 판별할 수 없음</li></ul><ul id="719387aa-0fa9-42fb-b415-d54c55060e6b" class="bulleted-list"><li>2 가 짝수라는 것은 알고있음 (<strong>q 가 참</strong>인 것을 알 수 있음)</li></ul><ul id="8a285d4c-9097-45f1-8183-627767df185f" class="bulleted-list"><li><strong>p → q 라는 명제식</strong>에서, <strong>q 가 참인 경우 전체 명제식은 항상 참</strong>이 됨</li></ul><ul id="dbfcc88f-8913-480a-9376-9d293171d5b7" class="bulleted-list"><li><strong>p → q 라는 명제식</strong>의 <strong>대우 명제</strong>는 <strong>~q → ~p</strong> 인데, <strong>~q 가 거짓</strong>이기 때문에 위의 예시에서 볼 수 있듯이 <strong>전체 명제식이 참</strong>이 됨</li></ul><ul id="d373f5b9-8495-474a-b614-6fcb1bde3ed7" class="bulleted-list"><li><strong>대우 명제식이 참</strong>일 경우, <strong>본 명제식도 참</strong>이 됨</li></ul></div></p></div></p><p id="86fcdc31-9436-4df9-836f-2bbd2226dd09" class="">문제 2: p 와 q 가 명제이고  p → q 가 거짓이라고 하자. 다음 명제식의 참 거짓은 어떻게 되는가?<div class="indented"><ol id="86d47fb4-426a-485c-81b6-3c04780b230e" class="numbered-list" start="1"><li>~p → q</li></ol><ol id="3f650f75-481b-456d-9f36-70f537e9ced8" class="numbered-list" start="2"><li>p v q</li></ol><ol id="c4ad2d25-6af7-40c4-8f27-dd735de28fdb" class="numbered-list" start="3"><li>q → p</li></ol><hr id="c10b879a-a70e-4eeb-99d7-be3d627e72d3"/><p id="6a869d00-4ab5-4460-9669-a367e4a72594" class="">생각한 답:  1. 참 2. 참 3. 참</p><p id="2fd2f274-aa90-47de-8eaf-3eb261ebfad1" class="">답: 1. 참 2. 참 3. 참</p><p id="72899eaa-4a77-4ded-8b7c-a50eaad57225" class="">풀이<div class="indented"><ul id="03c93086-355a-4fb1-b2f2-d41ccb22ecac" class="bulleted-list"><li><strong>p → q 가 거짓인 경우</strong>는 <strong>단 한 가지</strong> 밖에 없음 (<strong>p 가 참</strong>이고, <strong>q 가 거짓</strong>인 경우)</li></ul><ul id="56f6e40f-6e70-4fe2-8368-46ff4e1d9c18" class="bulleted-list"><li>1 번의 경우 <strong>~p 는 거짓</strong>이므로 <strong>전체 명제식은 참</strong>이 됨</li></ul><ul id="a9936ab8-431c-45a2-a09b-99eb95bd92ad" class="bulleted-list"><li>2 번의 경우 <strong>or 연산</strong>은 <strong>두 개가 모두 거짓일 때만 거짓</strong>이기 때문에 <strong>참</strong>이 됨</li></ul><ul id="e667c0d1-cd52-46e6-b7d7-250a469f5abe" class="bulleted-list"><li>3 번의 경우 <strong>q 가 거짓</strong>이므로 <strong>전체 명제식은 참</strong>이 됨</li></ul></div></p></div></p><p id="71facf3e-02a7-4a2e-b4f4-9dd3d18762a8" class="">문제 3: 다음 명제들의 역, 이, 대우를 쓰시오<div class="indented"><ol id="4847db1d-62c2-476d-8b4f-db73bf1d0ab3" class="numbered-list" start="1"><li>만약 0 이 홀수라면, 미국에서 2080 년 월드컵이 열린다.</li></ol><hr id="13d99042-9efe-4e0a-8692-8303f3eb42a1"/><p id="143496f7-df1c-4f1a-9dca-43e81102aa40" class="">생각한 답: </p><p id="519ae32d-6521-4556-b311-c5b084e7b8bf" class="">답<div class="indented"><ul id="69eb225a-6118-4040-bec1-944fc5b7cdec" class="bulleted-list"><li>역: 만약 미국에서 2080 년 월드컵이 열린다면, 0이 홀수이다.</li></ul><ul id="420a3979-02a2-43b3-8a73-ac22e89c7461" class="bulleted-list"><li>이:  만약 0 이 짝수라면, 미국에서 2080 년 월드컵이 열리지 않는다.</li></ul><ul id="bb46a7e7-81e7-452f-af85-95400d8f3725" class="bulleted-list"><li>대우: 만약 미국에서 2080 년 월드컵이 열리지 않는다면, 0은 짝수이다.</li></ul></div></p><ol id="48535fe4-5f85-492c-b169-57783898dc2f" class="numbered-list" start="1"><li>만약 19893827938274839 이 Prime Number 라면, 2 는 짝수이다.</li></ol><hr id="e62f38d1-bb78-48a2-bb48-f2af955199d6"/><p id="735e2bc4-f1a4-4e2c-971a-561a1a22ec92" class="">생각한 답<div class="indented"><ul id="d9be9330-0239-4265-848e-9bcc6ecc31d3" class="bulleted-list"><li>역: 만약 2 가 짝수이면, 19893827938274839 는 Prime Number 이다.</li></ul><ul id="ae321ea8-10ba-4ca3-a4fc-a04a0a3a92be" class="bulleted-list"><li>이: 만약 19893827938274839 이 Prime Number 가 아니라면, 2 는 홀수이다.</li></ul><ul id="13c3af72-4d55-4920-acc4-07dd79aa1000" class="bulleted-list"><li>대우: 만약 2 가 홀수이면, 19893827938274839 이 Prime Number 가 아니다.</li></ul></div></p><p id="07d9d2c4-5d68-4948-b2b7-39f0ef8b36c4" class="">답<div class="indented"><ul id="a4d9becd-b9fc-4900-9f85-c554d890c797" class="bulleted-list"><li>역: 만약 2 가 짝수이면, 19893827938274839 는 Prime Number 이다.</li></ul><ul id="b9ec1b16-8ae2-496e-b00b-a24b870b0414" class="bulleted-list"><li>이: 만약 19893827938274839 이 Prime Number 가 아니라면, 2 는 홀수이다.</li></ul><ul id="e2d19571-c0a6-4099-a0b0-ddcecca775b7" class="bulleted-list"><li>대우: 만약 2 가 홀수이면, 19893827938274839 이 Prime Number 가 아니다.</li></ul></div></p></div></p><p id="9496c0f4-068b-4baf-8502-7fcd96f19211" class="">문제 4: 다음 명제식의 진리표를 만드시오<div class="indented"><ol id="dc8df29d-c934-40c5-8b64-ddbea07b4305" class="numbered-list" start="1"><li>p ^ ( q → ~p )</li></ol><hr id="1d8d6bc8-ba87-4dc3-affe-68cf499642e8"/><p id="22de554f-a039-424d-8f48-8b4975b5e77c" class="">생각한 답<div class="indented"><div id="6396aaa0-2511-4ed6-92b8-631357cbfe0e" class="collection-content"><h4 class="collection-title">진리표</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>p</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>q</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>p ^ ( q -&gt; ~p )</th></tr></thead><tbody><tr id="248466cf-2647-4f1f-a39c-cc526fff5fb3"><td class="cell-LTKk"><span class="selected-value select-value-color-brown">T</span></td><td class="cell-iKk`"><span class="selected-value">T</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%206396aaa025114ed692b8631357cbfe0e/F%20248466cf26474f1fa39ccc526fff5fb3.html">F</a></td></tr><tr id="5c487f3d-c9e5-4ca6-80b7-1ea2be26c67a"><td class="cell-LTKk"><span class="selected-value select-value-color-brown">T</span></td><td class="cell-iKk`"><span class="selected-value select-value-color-orange">F</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%206396aaa025114ed692b8631357cbfe0e/T%205c487f3dc9e54ca680b71ea2be26c67a.html">T</a></td></tr><tr id="2371b3f0-2a6f-41d6-9fcb-ff1842170bc8"><td class="cell-LTKk"><span class="selected-value select-value-color-blue">F</span></td><td class="cell-iKk`"><span class="selected-value">T</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%206396aaa025114ed692b8631357cbfe0e/F%202371b3f02a6f41d69fcbff1842170bc8.html">F</a></td></tr><tr id="597a6554-8067-445a-92d4-b8956db31ed3"><td class="cell-LTKk"><span class="selected-value select-value-color-blue">F</span></td><td class="cell-iKk`"><span class="selected-value select-value-color-orange">F</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%206396aaa025114ed692b8631357cbfe0e/F%20597a65548067445a92d4b8956db31ed3.html">F</a></td></tr></tbody></table></div></div></p><p id="b988bc41-2b82-44f3-b32b-8da29bf5098f" class="">답<div class="indented"><div id="c320923b-e659-4a16-ae19-b93468855723" class="collection-content"><h4 class="collection-title">진리표</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>p</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>q</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>p ^ ( q -&gt; ~p )</th></tr></thead><tbody><tr id="66813fad-5959-484c-b307-41965a60be2d"><td class="cell-LTKk"><span class="selected-value select-value-color-brown">T</span></td><td class="cell-iKk`"><span class="selected-value">T</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%20c320923be6594a16ae19b93468855723/F%2066813fad5959484cb30741965a60be2d.html">F</a></td></tr><tr id="a89495bf-a8ea-4943-bc5f-a6e5cc56e6d1"><td class="cell-LTKk"><span class="selected-value select-value-color-brown">T</span></td><td class="cell-iKk`"><span class="selected-value select-value-color-orange">F</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%20c320923be6594a16ae19b93468855723/T%20a89495bfa8ea4943bc5fa6e5cc56e6d1.html">T</a></td></tr><tr id="5b1bc064-5898-448a-bc33-5569b6db0d1c"><td class="cell-LTKk"><span class="selected-value select-value-color-blue">F</span></td><td class="cell-iKk`"><span class="selected-value">T</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%20c320923be6594a16ae19b93468855723/F%205b1bc0645898448abc335569b6db0d1c.html">F</a></td></tr><tr id="479acefb-98c2-48ca-88cf-1e5b5badac96"><td class="cell-LTKk"><span class="selected-value select-value-color-blue">F</span></td><td class="cell-iKk`"><span class="selected-value select-value-color-orange">F</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%20c320923be6594a16ae19b93468855723/F%20479acefb98c248ca88cf1e5b5badac96.html">F</a></td></tr></tbody></table></div></div></p><ol id="8203ab73-4a2c-4cde-9760-aa31b2b3a76b" class="numbered-list" start="1"><li>( p ^ ~q ) → r</li></ol><hr id="1ec7817b-dd84-43be-a544-e8ab918318d3"/><p id="326e652d-8815-40b8-99f4-3fbc03cc3606" class="">생각한 답<div class="indented"><div id="445a161c-3445-4293-820c-da0bcb0b565b" class="collection-content"><h4 class="collection-title">진리표</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>p</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>q</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>r</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>( p ^ ~q ) -&gt; r</th></tr></thead><tbody><tr id="da6225a3-61c1-4b15-9fa7-675c6cc64049"><td class="cell-LTKk"><span class="selected-value select-value-color-brown">T</span></td><td class="cell-iKk`"><span class="selected-value">T</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-gray">T</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%20445a161c34454293820cda0bcb0b565b/T%20da6225a361c14b159fa7675c6cc64049.html">T</a></td></tr><tr id="9a1382ab-b963-4ddd-a4bf-687fb63ba3fa"><td class="cell-LTKk"><span class="selected-value select-value-color-brown">T</span></td><td class="cell-iKk`"><span class="selected-value">T</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-pink">F</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%20445a161c34454293820cda0bcb0b565b/T%209a1382abb9634ddda4bf687fb63ba3fa.html">T</a></td></tr><tr id="e64902f9-905b-4960-a1e4-59e1fab53a1c"><td class="cell-LTKk"><span class="selected-value select-value-color-brown">T</span></td><td class="cell-iKk`"><span class="selected-value select-value-color-orange">F</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-gray">T</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%20445a161c34454293820cda0bcb0b565b/T%20e64902f9905b4960a1e459e1fab53a1c.html">T</a></td></tr><tr id="1623dedf-1e7a-45f8-a1f1-3e82f8dc0f1a"><td class="cell-LTKk"><span class="selected-value select-value-color-brown">T</span></td><td class="cell-iKk`"><span class="selected-value select-value-color-orange">F</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-pink">F</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%20445a161c34454293820cda0bcb0b565b/F%201623dedf1e7a45f8a1f13e82f8dc0f1a.html">F</a></td></tr><tr id="f7bcd5c2-0353-49b5-8ad4-8e2f96a95f64"><td class="cell-LTKk"><span class="selected-value select-value-color-blue">F</span></td><td class="cell-iKk`"><span class="selected-value">T</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-gray">T</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%20445a161c34454293820cda0bcb0b565b/T%20f7bcd5c2035349b58ad48e2f96a95f64.html">T</a></td></tr><tr id="6517dd08-9c59-42ef-8bb9-5c06f766699c"><td class="cell-LTKk"><span class="selected-value select-value-color-blue">F</span></td><td class="cell-iKk`"><span class="selected-value">T</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-pink">F</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%20445a161c34454293820cda0bcb0b565b/T%206517dd089c5942ef8bb95c06f766699c.html">T</a></td></tr><tr id="d3a2c7d9-b849-4c7b-8384-e7c7d1ccebb9"><td class="cell-LTKk"><span class="selected-value select-value-color-blue">F</span></td><td class="cell-iKk`"><span class="selected-value select-value-color-orange">F</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-gray">T</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%20445a161c34454293820cda0bcb0b565b/T%20d3a2c7d9b8494c7b8384e7c7d1ccebb9.html">T</a></td></tr><tr id="7deaec01-1ac6-471e-88cf-d1a5a965687a"><td class="cell-LTKk"><span class="selected-value select-value-color-blue">F</span></td><td class="cell-iKk`"><span class="selected-value select-value-color-orange">F</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-pink">F</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%20445a161c34454293820cda0bcb0b565b/T%207deaec011ac6471e88cfd1a5a965687a.html">T</a></td></tr></tbody></table></div></div></p><p id="2b7d08ba-0d76-4e17-a2a7-ad8cdd41e70e" class="">답<div class="indented"><div id="1fe8ce07-40bd-4373-af28-328f301e5709" class="collection-content"><h4 class="collection-title">진리표</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>p</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>q</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>r</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>( p ^ ~q ) -&gt; r</th></tr></thead><tbody><tr id="cd391f36-1172-4689-a594-1f6509a8f1df"><td class="cell-LTKk"><span class="selected-value select-value-color-brown">T</span></td><td class="cell-iKk`"><span class="selected-value">T</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-gray">T</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%201fe8ce0740bd4373af28328f301e5709/T%20cd391f3611724689a5941f6509a8f1df.html">T</a></td></tr><tr id="cfb16326-9e46-4ac4-b76a-a69c4b87375c"><td class="cell-LTKk"><span class="selected-value select-value-color-brown">T</span></td><td class="cell-iKk`"><span class="selected-value">T</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-pink">F</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%201fe8ce0740bd4373af28328f301e5709/T%20cfb163269e464ac4b76aa69c4b87375c.html">T</a></td></tr><tr id="5d507901-2416-43ab-8ec0-edf0383aa0c9"><td class="cell-LTKk"><span class="selected-value select-value-color-brown">T</span></td><td class="cell-iKk`"><span class="selected-value select-value-color-orange">F</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-gray">T</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%201fe8ce0740bd4373af28328f301e5709/T%205d507901241643ab8ec0edf0383aa0c9.html">T</a></td></tr><tr id="5f66ad27-6c76-45e7-b0fb-aadb835ec4dc"><td class="cell-LTKk"><span class="selected-value select-value-color-brown">T</span></td><td class="cell-iKk`"><span class="selected-value select-value-color-orange">F</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-pink">F</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%201fe8ce0740bd4373af28328f301e5709/F%205f66ad276c7645e7b0fbaadb835ec4dc.html">F</a></td></tr><tr id="00753483-091b-47b8-aba8-de6d60c67ac4"><td class="cell-LTKk"><span class="selected-value select-value-color-blue">F</span></td><td class="cell-iKk`"><span class="selected-value">T</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-gray">T</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%201fe8ce0740bd4373af28328f301e5709/T%2000753483091b47b8aba8de6d60c67ac4.html">T</a></td></tr><tr id="f7a889ff-124a-4b89-b0b7-6ff6ed068d4b"><td class="cell-LTKk"><span class="selected-value select-value-color-blue">F</span></td><td class="cell-iKk`"><span class="selected-value">T</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-pink">F</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%201fe8ce0740bd4373af28328f301e5709/T%20f7a889ff124a4b89b0b76ff6ed068d4b.html">T</a></td></tr><tr id="93b78eea-b0c2-4bcf-a10f-5ad338c631bb"><td class="cell-LTKk"><span class="selected-value select-value-color-blue">F</span></td><td class="cell-iKk`"><span class="selected-value select-value-color-orange">F</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-gray">T</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%201fe8ce0740bd4373af28328f301e5709/T%2093b78eeab0c24bcfa10f5ad338c631bb.html">T</a></td></tr><tr id="7327928d-884f-4f69-b8fd-869de3f9f403"><td class="cell-LTKk"><span class="selected-value select-value-color-blue">F</span></td><td class="cell-iKk`"><span class="selected-value select-value-color-orange">F</span></td><td class="cell-|Xsi"><span class="selected-value select-value-color-pink">F</span></td><td class="cell-title"><a href="%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%E1%84%80%E1%85%AA%20%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%89%E1%85%AE%E1%84%92%E1%85%A1%E1%86%A8%201056de3e27594e0a80f28a04b4850a76/%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%85%E1%85%B5%E1%84%91%E1%85%AD%201fe8ce0740bd4373af28328f301e5709/T%207327928d884f4f69b8fd869de3f9f403.html">T</a></td></tr></tbody></table></div></div></p></div></p></details></li></ul></li></ol><ol id="2567fc8b-f0f8-4a7c-a784-a9db2403dece" class="numbered-list" start="3"><li>증명</li></ol><p id="a703cb19-8aaa-4737-be24-c08933257e94" class="">
+</p><hr id="2ac3d8d4-ad17-4c5d-8c13-cd0db725c921"/><p id="1bf87f4a-5442-4866-a52c-d1c55822a8ab" class="">참고</p><p id="abe29039-b95b-4c6e-82ee-dc4868d4d092" class="">*1 명제논리의 기초(2) - 진리표</p><figure id="edfc7e44-d53f-4cb6-8452-226e36c4cbd7"><a href="https://imnt.tistory.com/92" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">명제논리의 기초(2) - 진리표</div><div class="bookmark-description">진리표는 단순명제나 복합명제의 진리값을 표로 나타낸 것입니다. 어떤 명제의 진리값을 결정할 때 유용하게 사용되는 수단이죠. 명제는 T(true)/F(false)로 구분되는데, 이를 이용하여 진리표를 생성합니다. 가령..</div></div><div class="bookmark-href"><img src="https://imnt.tistory.com/favicon.ico" class="icon bookmark-icon"/>https://imnt.tistory.com/92</div></div><img src="https://t1.daumcdn.net/tistory_admin/static/images/openGraph/opengraph.png" class="bookmark-image"/></a></figure><p id="feebba26-ac8c-4ab2-ae69-dbf031155f72" class="">
+</p></div></article></body></html>
